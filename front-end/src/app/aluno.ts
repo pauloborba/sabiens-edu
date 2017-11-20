@@ -7,7 +7,7 @@ export class Aluno extends Usuario {
   .
    */
   constructor(nome: string, senha: string, email: string, turma: Turma) {
-    super(nome, senha, email);
+    super(nome, senha, email, 0);
     this._turma = turma;
   }
 

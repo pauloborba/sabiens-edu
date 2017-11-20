@@ -5,7 +5,7 @@ export class Monitor extends Usuario {
   private _listaTarefas: Task[];
 
   constructor(nome: string, senha: string, email: string, listaTarefas: Task[]) {
-    super(nome, senha, email);
+    super(nome, senha, email, 1);
     this._listaTarefas = listaTarefas;
   }
 
