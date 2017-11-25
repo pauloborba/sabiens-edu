@@ -1,7 +1,7 @@
 import { Formulario } from './formulario';
 import { Conteudo } from './conteudo';
 
-export class Sistemas {
+export class Sistema {
   private _nome: string;
   private _descricao: string;
   private _formularios: Formulario[];

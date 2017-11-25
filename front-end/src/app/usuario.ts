@@ -2,25 +2,16 @@ export class Usuario {
   private _nome: string;
   private _senha: string;
   private _email: string;
-  private _permissoes: number; // Aluno = 0 Monitor = 1 Administrador = 2
   /*
   .
    */
 
-  constructor(nome: string, senha: string, email: string, permissoes: number) {
+  constructor(nome: string, senha: string, email: string) {
     this._nome = nome;
     this._senha = senha;
     this._email = email;
-    this._permissoes = permissoes;
   }
 
-  public get permissoes(): number {
-    return this._permissoes;
-  }
-
-  public set permissoes(value: number) {
-    this._permissoes = value;
-  }
   // .
   public get nome(): string {
     return this._nome;
