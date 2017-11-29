@@ -1,6 +1,6 @@
 {
     "name": "sabiens-server",
-    "version": "0.1",
+    "version": "0.0.1",
     "description": "Servidor do sabiens",
     "main": "ta-server.js",
     "scripts": {

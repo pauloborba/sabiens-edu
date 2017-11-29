@@ -1,0 +1,70 @@
+<form class="col s12">
+	<div class="row">
+	<a class='dropdown-button btn col s2 deep-purple darken-3' data-activates='dropdown1'>Sistema</a>
+	<ul id='dropdown1' class='dropdown-content'>
+		<li><a id='nervoso'>Nervoso</a></li>
+		<li class="divider"></li>
+		<li><a id='circulatório'>Circulatório</a></li>
+		<li class="divider"></li>
+		<li><a id='locomotor'>Locomotor</a></li>
+	</ul>
+	</div>
+	
+	<div class="row">
+	<div class="input-field col s6 offset-s1">
+		<input id="titulo" type="text" class="validate">
+		<label for="titulo">Título</label>
+	</div>
+	</div>
+	
+	<div class="row">
+		<div class="divider"></div>
+	</div>
+	
+	<div class="row">
+		<h4>Questões</h4>
+	</div>
+	
+	<div *ngFor="let q of formulario.questoes; index as i" class="row">
+	<form class="col s11">
+		<div class="row">
+			<div class="input-field col s11">
+				<textarea id="enunciado{{i+1}}" class="materialize-textarea" [(ngModel)]="q.enunciado" [ngModelOptions]="{standalone: true}"></textarea>
+				<label for="enunciado{{i+1}}">{{i+1}}.</label>
+			</div>
+			<button class="btn-floating btn-large deep-purple darken-3 offset-s1" (click)="removerQuestao(i)"><i class="material-icons">close</i></button>
+		</div>
+		
+		<div *ngFor="let a of q.alternativas; index as j; trackBy:tracky" class="row col s10 offset-s1">
+			<div class="radio col s1 right-align">
+				<input id="check{{j+1}}" name="correta" type="radio" class="col s1 right-align" [(ngModel)]="formulario.questoes[i].correta" value={{j+1}}>
+				<label for="check{{j+1}}"></label>
+			</div>
+			<div class="input-field col s9">
+				<input id="alternativa{{i+1}},{{j+1}}" type="text" [(ngModel)]="q.alternativas[j]" [ngModelOptions]="{standalone: true}">
+				<label for="alternativa{{i+1}},{{j+1}}">{{'abcdefghijklmnopqrstuvwxyz'[j]}}.</label>
+			</div>
+			<button class="btn-floating btn deep-purple darken-3 offset-s1" (click)="removerAlternativa(i,j)"><i class="material-icons">close</i></button>
+		</div>
+		
+		<div class="row col s11 offset-s1">
+		<a id="addA{{j+1}}" class="btn deep-purple darken-3" (click)="criarAlternativa(i)"><i class="material-icons left">add</i>Adicionar alternativa</a>
+		</div>
+		
+		<div class="row col s11">
+		<div class="divider"></div>
+		</div>
+	</form>
+	</div>
+	
+	<button id="addQ" class="btn deep-purple darken-3" (click)="criarQuestao()"><i class="material-icons left">add</i>Adicionar questao</button>
+	
+	<div class="row col s12">
+	<div class="divider"></div>
+	</div>
+	
+	<div class="row col s12">
+	<button id="submit" class="btn deep-purple darken-3" (click)="submeter()"><i class="material-icons right">send</i>submeter</button>
+	<i *ngIf="success" class="material-icons green-text">check</i>
+	</div>
+</form>
