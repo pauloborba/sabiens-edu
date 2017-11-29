@@ -19,3 +19,11 @@ When eu tento cadastrar no sistema "nervoso" um novo formulário com título “
 Then o sistema "nervoso" não armazena o novo formulário
 Then o formulário antigo é mantido
 Then o formulário mantido no sistema possui "2" questões.
+
+Scenario: Remoção de formulário já respondido
+Given estou logado como um administrador
+Given estou na página de formulários do sistema "nervoso"
+Given eu vejo um formulário "def"
+Given o aluno "test" já respondeu ao formulário "def"
+When eu tento remover o formulário "def"
+Then eu vejo uma mensagem pedindo confirmação e me informando que alguns alunos já responderam ao formulário
