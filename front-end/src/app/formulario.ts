@@ -8,6 +8,7 @@ export class Formulario extends Material {
    */
   constructor(nome: string, id: string, descricao: string) {
     super(nome, id, descricao);
+	this._questoes = [];
   }
   /*
   .
@@ -20,15 +21,11 @@ export class Formulario extends Material {
     this._questoes = value;
   }
   public adicionarQuestao(questao: Questao, i: number): boolean {
-    /*
-    adicionar coisas (isso é um esqueleto)
-     */
+    this._questoes[i] = questao;
     return true;
   }
   public removeQuestao(i: number): boolean {
-    /*
-    adicionar coisas (isso é um esqueleto)
-     */
+    this._questoes.splice(i,1);
     return true;
   }
 }
