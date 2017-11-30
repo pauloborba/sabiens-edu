@@ -4,8 +4,7 @@ import { Questao } from './questao';
 
 @Component({
   selector: 'controleDeFormulario',
-  templateUrl: './controleDeFormulario.component.html',
-  styleUrls: ['./controleDeFormulario.component.css']
+  templateUrl: './controleDeFormulario.component.html'
 })
 export class ControleDeFormularioComponent {
 	formulario: Formulario = new Formulario('','','');
@@ -31,6 +30,9 @@ export class ControleDeFormularioComponent {
 	
 	removerAlternativa(i,j): void {
 		this.formulario.questoes[i].alternativas.splice(j,1);
+		if(this.formulario.questoes[i].alternativas.length == 0) {
+			this.formulario.questoes[i].correta = -1;
+		}
 	}
 	
 	tracky(i, thing): any {

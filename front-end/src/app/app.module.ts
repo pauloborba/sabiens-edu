@@ -8,6 +8,7 @@ import { MaterializeModule } from 'angular2-materialize';
 
 import { AppComponent } from './app.component';
 import { ControleDeFormularioComponent } from './controleDeFormulario.component';
+import { FormularioService } from './formulario.service';
 
 
 @NgModule({
