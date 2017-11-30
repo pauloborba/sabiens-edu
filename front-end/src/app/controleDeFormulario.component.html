@@ -2,11 +2,11 @@
 	<div class="row">
 	<a class='dropdown-button btn col s2 deep-purple darken-3' data-activates='dropdown1'>Sistema</a>
 	<ul id='dropdown1' class='dropdown-content'>
-		<li><a id='nervoso'>Nervoso</a></li>
+		<li><a id='nervoso' (click)="setSistema('Nervoso')">Nervoso</a></li>
 		<li class="divider"></li>
-		<li><a id='circulatório'>Circulatório</a></li>
+		<li><a id='circulatório' (click)="setSistema('Circulatorio')">Circulatório</a></li>
 		<li class="divider"></li>
-		<li><a id='locomotor'>Locomotor</a></li>
+		<li><a id='locomotor'(click)="setSistema('Locomotor')">Locomotor</a></li>
 	</ul>
 	</div>
 	
@@ -37,8 +37,8 @@
 		
 		<div *ngFor="let a of q.alternativas; index as j; trackBy:tracky" class="row col s10 offset-s1">
 			<div class="radio col s1 right-align">
-				<input id="check{{j+1}}" name="correta" type="radio" class="col s1 right-align" [(ngModel)]="formulario.questoes[i].correta" value={{j+1}}>
-				<label for="check{{j+1}}"></label>
+				<input id="check{{i+1}},{{j+1}}" name="correta{{i+1}}" type="radio" class="col s1 right-align" [(ngModel)]="formulario.questoes[i].correta" value={{j+1}}>
+				<label for="check{{i+1}},{{j+1}}"></label>
 			</div>
 			<div class="input-field col s9">
 				<input id="alternativa{{i+1}},{{j+1}}" type="text" [(ngModel)]="q.alternativas[j]" [ngModelOptions]="{standalone: true}">
@@ -48,7 +48,7 @@
 		</div>
 		
 		<div class="row col s11 offset-s1">
-		<a id="addA{{j+1}}" class="btn deep-purple darken-3" (click)="criarAlternativa(i)"><i class="material-icons left">add</i>Adicionar alternativa</a>
+		<button id="addA{{i+1}}" class="btn deep-purple darken-3" (click)="criarAlternativa(i)"><i class="material-icons left">add</i>Adicionar alternativa</button>
 		</div>
 		
 		<div class="row col s11">
