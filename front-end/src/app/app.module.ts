@@ -5,7 +5,6 @@ import { RouterModule }   from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { MaterializeModule } from 'angular2-materialize';
 
-
 import { AppComponent } from './app.component';
 import { ControleDeFormularioComponent } from './controleDeFormulario.component';
 import { FormularioService } from './formulario.service';
@@ -27,7 +26,7 @@ import { FormularioService } from './formulario.service';
       }
     ])
   ],
-  providers: [],
+  providers: [FormularioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

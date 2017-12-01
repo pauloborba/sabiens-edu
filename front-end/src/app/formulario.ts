@@ -28,4 +28,30 @@ export class Formulario extends Material {
     this._questoes.splice(i,1);
     return true;
   }
+	
+  check(): any {
+    if(this.semResposta()) {
+      return this.erroSemResposta();
+    }
+    return null;
+  }
+  
+  semResposta(): boolean {
+    let questoesSemResposta = this.questoes.filter(questao => {
+      return questao.correta === -1
+    });
+    return questoesSemResposta.length > 0;
+  }
+  
+  erroSemResposta(): string {
+    let erroString = 'Erro na submissão!\nAs seguintes questões não possuem resposta:\n';
+    
+    this.questoes.forEach((questao, index) => {
+      if(questao.correta === -1) {
+        erroString += (Number(index)+1) + '\n';
+      }
+    });
+    
+    return erroString;
+  }
 }
