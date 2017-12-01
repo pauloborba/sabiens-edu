@@ -1,27 +1,54 @@
 import express = require('express');
 import bodyParser = require("body-parser");
 
+import { Sistema } from '../front-end/src/app/sistemas';
+import { CadastroDeSistema } from '../front-end/src/app/cadastro de sistema';
+import { Formulario } from '../front-end/src/app/formulario';
+
 var app = express();
-
-
+var allowCrossDomain = function(req: any, res: any, next: any) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+}
+app.use(allowCrossDomain);
 app.use(bodyParser.json());
 
-app.get('/exemplo', function () {
-    console.log('Example!')
-    
-})
+var sistemaVazio = function(nome: string) {
+	return new Sistema(nome, '', [],[]);
+}
 
-app.post('/exemplo', function () {
-    console.log('Example!')
-    
-})
+var cadastro: CadastroDeSistema = new CadastroDeSistema([
+	sistemaVazio('Nervoso'),
+	sistemaVazio('Circulatorio'),
+	sistemaVazio('Locomotor')
+]);
 
-app.put('/exemplo', function () {
-    console.log('Example!')
-})
+var castToFormulario = function(obj: any) {
+	var form: Formulario = new Formulario('','','');
+	form.nome = obj._nome;
+	form.id = obj._id;
+	form.descricao = obj._descricao;
+	form.questoes = obj._questoes;
+	return form;
+}
+
+for(let sistema of cadastro.sistemas) {
+	app.post('/' + sistema.nome + '/formulario', function (req: express.Request, res: express.Response) {
+		var formularioQueNaoFunciona: Formulario = <Formulario> req.body;
+		var formulario = castToFormulario(formularioQueNaoFunciona);
+		
+		var erroResposta = formulario.check();
+		if (!erroResposta) {
+			sistema.formularios.push(formulario);
+		}
+		res.send(erroResposta);
+	})
+}
 
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+  console.log('Sabiens app listening on port 3000!')
 })
 
 export { app }

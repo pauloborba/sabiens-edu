@@ -1,6 +1,7 @@
 ///<reference path="material.ts"/>
 import { Material } from './material';
 import { Questao } from './questao';
+
 export class Formulario extends Material {
   private _questoes: Questao[];
   /*
@@ -29,29 +30,17 @@ export class Formulario extends Material {
     return true;
   }
 	
-  check(): any {
-    if(this.semResposta()) {
-      return this.erroSemResposta();
-    }
-    return null;
-  }
-  
-  semResposta(): boolean {
-    let questoesSemResposta = this.questoes.filter(questao => {
-      return questao.correta === -1
-    });
-    return questoesSemResposta.length > 0;
-  }
-  
-  erroSemResposta(): string {
+  public check(): string {
     let erroString = 'Erro na submissão!\nAs seguintes questões não possuem resposta:\n';
+	let any = false;
     
     this.questoes.forEach((questao, index) => {
-      if(questao.correta === -1) {
+      if(questao._correta === -1) {
         erroString += (Number(index)+1) + '\n';
+		any = true;
       }
     });
     
-    return erroString;
+    return any? erroString : null;
   }
 }
