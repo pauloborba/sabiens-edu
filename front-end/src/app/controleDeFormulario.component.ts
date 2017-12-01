@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
 import { Formulario } from './formulario';
 import { Questao } from './questao';
+import { FormularioService } from './formulario.service';
 
 @Component({
   selector: 'controleDeFormulario',
   templateUrl: './controleDeFormulario.component.html'
 })
+
 export class ControleDeFormularioComponent {
+	constructor(private formularioService: FormularioService) {}
+	
 	formulario: Formulario = new Formulario('','','');
 	sistema: string = 'Nervoso';
 	success: boolean = false;

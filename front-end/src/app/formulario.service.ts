@@ -18,8 +18,8 @@ export class FormularioService {
 	}
 	
 	cadastraFormulario(formulario, nomeSistema): any {
-		let erroResposta = this.checaFormulario(formulario);
-		this.buscaSistema(this.cadastro, nomeSistema).formularios.push(formulario);
+		let erroResposta = formulario.check();
+		this.cadastro.buscaSistema(nomeSistema).formularios.push(formulario);
 		return erroResposta;
 	}
 	
@@ -35,9 +35,7 @@ export class FormularioService {
 	}
 	
 	semResposta(formulario): boolean {
-		let questoesSemResposta = formulario.questoes.filter(questao => {
-			return questao.correta === -1
-		});
+		let questoesSemResposta = formulario.questoes.filter(questao => questao.correta === -1);
 		return questoesSemResposta.length > 0;
 	}
 	
