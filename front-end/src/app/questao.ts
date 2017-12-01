@@ -2,7 +2,7 @@ export class Questao {
   private _titulo: string;
   private _enuncidado: string;
   private _alternativas: string[];
-  private _correta: number;
+  public _correta: number;
   /*
   .
    */
