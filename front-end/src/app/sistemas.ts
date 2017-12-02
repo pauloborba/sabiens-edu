@@ -45,4 +45,19 @@ export class Sistema {
   public set conteudos(value: Conteudo[]) {
     this._conteudos = value;
   }
+  
+  public cadastraFormulario(formulario: Formulario): string {
+    var erroDuplicado = this.checkDuplicado(formulario);
+    if (!erroDuplicado) {
+	  this.formularios.push(formulario);
+    }
+    return erroDuplicado;
+  }
+  
+  private checkDuplicado(formulario: Formulario): string {
+    if(this.formularios.find(form => form.nome === formulario.nome)) {
+	  return 'ERRO:\nJá existe um formulário com título "' + formulario.nome + '"\n';
+	}
+	return null;
+  }
 }
