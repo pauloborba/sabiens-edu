@@ -39,11 +39,7 @@ for(let sistema of cadastro.sistemas) {
 		var formularioQueNaoFunciona: Formulario = <Formulario> req.body;
 		var formulario = castToFormulario(formularioQueNaoFunciona);
 		
-		var erro = formulario.check();
-		if(!erro) {
-			erro |= sistema.cadastraFormulario(formulario);
-		}
-		res.send(erro);
+		res.send(sistema.cadastraFormulario(formulario));
 	})
 }
 
