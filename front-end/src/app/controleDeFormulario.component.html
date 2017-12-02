@@ -12,7 +12,7 @@
 	
 	<div class="row">
 	<div class="input-field col s6 offset-s1">
-		<input id="titulo" type="text" class="validate">
+		<input id="titulo" type="text" class="validate" [(ngModel)]="formulario.nome" [ngModelOptions]="{standalone: true}">
 		<label for="titulo">Título</label>
 	</div>
 	</div>

@@ -56,11 +56,10 @@ defineSupportCode(function ({ Given, When, Then }) {
 		}
 		var alertDialog = browser.switchTo().alert();
 		await alertDialog;
-		expect(alertDialog.getText()).to.eventually.not.be.null;
+		expect(alertDialog.getText()).not.to.be.null;
     });
 	
     Then(/^a mensagem informa que a questão "(\d*)" não possui resposta.$/, async (questao) => {
-		
 		var alertText = await browser.switchTo().alert().getText();
 		var questaoString = <string> questao;
 		expect(alertText).to.contain(questaoString);
@@ -78,7 +77,7 @@ defineSupportCode(function ({ Given, When, Then }) {
 		while(counter <= Number(<string> questoes)) {
 			await $("button[id='addQ']").click();
 			await element(by.id('addA' + counter.toString())).click()
-			await element(by.id('enunciado' + counter.toString())).sendKeys('blalbalblablalbalblablalbalblablalbablalbalblablalbalblablalbalblablalba');
+			await element(by.id('enunciado' + counter.toString())).sendKeys('blalbalblablalbalbla');
 			await element(by.xpath("//label[@for='check" + counter.toString() + ",1']")).click();
 			await counter++;
 		}
@@ -97,7 +96,7 @@ defineSupportCode(function ({ Given, When, Then }) {
 		while(counter <= Number(<string> questoes)) {
 			await $("button[id='addQ']").click();
 			await element(by.id('addA' + counter.toString())).click()
-			await element(by.id('enunciado' + counter.toString())).sendKeys('blalbalblablalbalblablalbalblablalbablalbalblablalbalblablalbalblablalba');
+			await element(by.id('enunciado' + counter.toString())).sendKeys('blalbalblablalbalbla');
 			await element(by.xpath("//label[@for='check" + counter.toString() + ",1']")).click();
 			await counter++;
 		}
@@ -131,9 +130,8 @@ defineSupportCode(function ({ Given, When, Then }) {
 		await element(by.xpath("//body")).getText()
 			.then(source => sistemas = source);
 		await sistemas;
-		sistemas = JSON.parse(sistemas);
 		sistemas = JSON.parse(sistemas)._sistemas;
 		sistemas = sistemas.find(sys => sys._nome.toUpperCase() === (<string> sistema).toUpperCase());
-		await expect(sistemas._formularios[0].questoes.length).to.equal(2);
+		await expect(sistemas._formularios[0]._questoes.length).to.equal(Number(<string> questoes));
     });
 });

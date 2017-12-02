@@ -31,7 +31,7 @@ export class Formulario extends Material {
   }
 	
   public check(): string {
-    let erroString = 'Erro na submissão!\nAs seguintes questões não possuem resposta:\n';
+    let erroString = 'ERRO:\nAs seguintes questões não possuem resposta:\n';
 	let any = false;
     
     this.questoes.forEach((questao, index) => {

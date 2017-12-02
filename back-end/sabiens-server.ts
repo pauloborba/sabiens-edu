@@ -39,13 +39,17 @@ for(let sistema of cadastro.sistemas) {
 		var formularioQueNaoFunciona: Formulario = <Formulario> req.body;
 		var formulario = castToFormulario(formularioQueNaoFunciona);
 		
-		var erroResposta = formulario.check();
-		if (!erroResposta) {
-			sistema.formularios.push(formulario);
+		var erro = formulario.check();
+		if(!erro) {
+			erro |= sistema.cadastraFormulario(formulario);
 		}
-		res.send(erroResposta);
+		res.send(erro);
 	})
 }
+
+app.get('/sistemas', function (req: express.Request, res: express.Response) {
+	res.send(JSON.stringify(cadastro));
+})
 
 app.listen(3000, function () {
   console.log('Sabiens app listening on port 3000!')

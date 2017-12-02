@@ -39,12 +39,11 @@ for (let sistema of cadastro.sistemas) {
         if (!erroResposta) {
             sistema.formularios.push(formulario);
         }
-        console.log(erroResposta);
         res.send(erroResposta);
     });
 }
-app.put('/exemplo', function () {
-    console.log('Example!');
+app.get('/sistemas', function (req, res) {
+    res.send(JSON.stringify(cadastro));
 });
 app.listen(3000, function () {
     console.log('Sabiens app listening on port 3000!');
