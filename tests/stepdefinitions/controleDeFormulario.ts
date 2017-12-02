@@ -1,14 +1,11 @@
 import { defineSupportCode } from 'cucumber';
-import { protractor, browser, $, element, ElementArrayFinder, by } from 'protractor';
+import { protractor, browser, $, element, ElementArrayFinder, by, until } from 'protractor';
+
 let chai = require('chai').use(require('chai-as-promised'));
 let expect = chai.expect;
 
 let loginAs = function(user, senha) {
 	
-};
-
-let getAlertText = function(instance) {
-	return instance.switchTo().alert().getText();
 };
 
 defineSupportCode(function ({ Given, When, Then }) {
@@ -59,7 +56,7 @@ defineSupportCode(function ({ Given, When, Then }) {
 		}
 		var alertDialog = browser.switchTo().alert();
 		await alertDialog;
-		expect(alertDialog.getText()).not.to.be.null;
+		expect(alertDialog.getText()).to.eventually.not.be.null;
     });
 	
     Then(/^a mensagem informa que a questão "(\d*)" não possui resposta.$/, async (questao) => {
@@ -67,5 +64,76 @@ defineSupportCode(function ({ Given, When, Then }) {
 		var alertText = await browser.switchTo().alert().getText();
 		var questaoString = <string> questao;
 		expect(alertText).to.contain(questaoString);
+		await browser.switchTo().alert().accept();
+    });
+});
+
+defineSupportCode(function ({ Given, When, Then }) {
+    Given(/^existe no sistema "([^\"]*)" um formulário com título "([^\"]*)", com "([^\"]*)" questões$/, async (sistema, titulo, questoes) => {
+        await browser.get("http://localhost:4200/");
+        await expect(browser.getTitle()).to.eventually.equal('SabiensEdu');
+		await $("a[routerLink='/controleDeFormulario']").click();
+		
+		var counter = 1;
+		while(counter <= Number(<string> questoes)) {
+			await $("button[id='addQ']").click();
+			await element(by.id('addA' + counter.toString())).click()
+			await element(by.id('enunciado' + counter.toString())).sendKeys('blalbalblablalbalblablalbalblablalbablalbalblablalbalblablalbalblablalba');
+			await element(by.xpath("//label[@for='check" + counter.toString() + ",1']")).click();
+			await counter++;
+		}
+		
+        await $("input[id='titulo']").sendKeys(<string> titulo);
+		
+		await $("button[id='submit']").click();
+    });
+
+    When(/^eu tento cadastrar no sistema "([^\"]*)" um novo formulário com título "([^\"]*)", com "([^\"]*)" questão$/, async (sistema, titulo, questoes) => {
+        await browser.get("http://localhost:4200/");
+        await expect(browser.getTitle()).to.eventually.equal('SabiensEdu');
+		await $("a[routerLink='/controleDeFormulario']").click();
+		
+		var counter = 1;
+		while(counter <= Number(<string> questoes)) {
+			await $("button[id='addQ']").click();
+			await element(by.id('addA' + counter.toString())).click()
+			await element(by.id('enunciado' + counter.toString())).sendKeys('blalbalblablalbalblablalbalblablalbablalbalblablalbalblablalbalblablalba');
+			await element(by.xpath("//label[@for='check" + counter.toString() + ",1']")).click();
+			await counter++;
+		}
+		
+        await $("input[id='titulo']").sendKeys(<string> titulo);
+		
+		await $("button[id='submit']").click();
+		
+		while(counter < 8000000) {
+			counter++;
+			//essa maneira de esperar parece ser a única que funciona...
+		}
+		await browser.switchTo().alert().accept();
+    });
+	
+	
+    Then(/^o sistema "([^\"]*)" não armazena o novo formulário$/, async (sistema) => {
+        await browser.get("http://localhost:3000/sistemas");
+		var sistemas;
+		await element(by.xpath("//body")).getText()
+			.then(source => sistemas = source);
+		await sistemas;
+		sistemas = JSON.parse(sistemas)._sistemas;
+		sistemas = sistemas.find(sys => sys._nome.toUpperCase() === (<string> sistema).toUpperCase());
+		await expect(sistemas._formularios.length).to.equal(1);
+    });
+	
+    Then(/^o formulário mantido no sistema "([^\"]*)" possui "([^\"]*)" questões.$/, async (sistema, questoes) => {
+        await browser.get("http://localhost:3000/sistemas");
+		var sistemas;
+		await element(by.xpath("//body")).getText()
+			.then(source => sistemas = source);
+		await sistemas;
+		sistemas = JSON.parse(sistemas);
+		sistemas = JSON.parse(sistemas)._sistemas;
+		sistemas = sistemas.find(sys => sys._nome.toUpperCase() === (<string> sistema).toUpperCase());
+		await expect(sistemas._formularios[0].questoes.length).to.equal(2);
     });
 });
