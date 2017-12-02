@@ -47,11 +47,12 @@ export class Sistema {
   }
   
   public cadastraFormulario(formulario: Formulario): string {
+    var erroResposta = formulario.check();
     var erroDuplicado = this.checkDuplicado(formulario);
     if (!erroDuplicado) {
 	  this.formularios.push(formulario);
     }
-    return erroDuplicado;
+    return erroResposta || erroDuplicado;
   }
   
   private checkDuplicado(formulario: Formulario): string {
