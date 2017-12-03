@@ -14,7 +14,7 @@
 	</div>
 </form>
 
-<form class="col s12" *ngIf="!modoLista">	
+<form class="col s12" *ngIf="!modoLista">
 	<div class="row">
 	<div class="col s11 row">
 	<button class="btn orange darken-1" id="return" (click)="return()" white-space:nowrap><i class="material-icons left" >arrow_back</i>voltar</button>
@@ -24,7 +24,7 @@
 		<input id="titulo" type="text" class="validate" [(ngModel)]="formulario.nome" [ngModelOptions]="{standalone: true}">
 		<label for="titulo">Título</label>
 	</div>
-	<button class="btn" id="fingir white" (click)="fingir()"><i class="material-icons left">message</i>fingir que alguem já respondeu</button>
+	<button class="btn" id="fingir" (click)="fingir()"><i class="material-icons left">message</i>fingir que alguem já respondeu</button>
 	</div>
 	
 	<div class="row">
