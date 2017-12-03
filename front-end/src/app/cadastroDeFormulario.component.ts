@@ -4,13 +4,16 @@ import { Questao } from './questao';
 import { FormularioService } from './formulario.service';
 
 @Component({
-  selector: 'controleDeFormulario',
-  templateUrl: './controleDeFormulario.component.html'
+  selector: 'cadastroDeFormulario',
+  templateUrl: './cadastroDeFormulario.component.html'
 })
 
-export class ControleDeFormularioComponent {
-	constructor(private formularioService: FormularioService) {}
+export class CadastroDeFormularioComponent {
+	constructor(formularioService: FormularioService) {
+		this.formularioService = formularioService;
+	}
 	
+	formularioService: FormularioService;
 	formulario: Formulario = new Formulario('','','');
 	sistema: string = 'Nervoso';
 	success: boolean = false;
