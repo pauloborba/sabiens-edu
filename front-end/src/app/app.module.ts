@@ -6,14 +6,16 @@ import { HttpModule } from '@angular/http';
 import { MaterializeModule } from 'angular2-materialize';
 
 import { AppComponent } from './app.component';
-import { ControleDeFormularioComponent } from './controleDeFormulario.component';
+import { CadastroDeFormularioComponent } from './cadastroDeFormulario.component';
+import { ListaFormulariosComponent } from './listaFormularios.component';
 import { FormularioService } from './formulario.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-	ControleDeFormularioComponent,
+	CadastroDeFormularioComponent,
+	ListaFormulariosComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,8 +23,13 @@ import { FormularioService } from './formulario.service';
     HttpModule, 
     RouterModule.forRoot([
       {
-        path: 'controleDeFormulario',
-        component: ControleDeFormularioComponent
+        path: 'cadastroDeFormulario',
+        component: CadastroDeFormularioComponent
+      },
+	  
+      {
+        path: 'listaFormularios',
+        component: ListaFormulariosComponent
       }
     ])
   ],

@@ -16,6 +16,8 @@ export class Sistemas {
     this._descricao = descricao;
     this._formularios = formularios;
     this._conteudos = conteudos;
+	
+	this.respondido = [];
   }
 
   public get nome(): string {
@@ -50,11 +52,33 @@ export class Sistemas {
     this._conteudos = value;
   }
   
+  private respondido: boolean[];
+  
+  public simularResposta(formulario: Formulario): void {
+    var index = this.formularios.findIndex(form => form.nome === formulario.nome);
+	if(index != -1) {
+	  this.respondido[index] = true;
+	}
+  }
+  
+  public alteraFormulario(oldNome: string, novoFormulario: Formulario, confirmado: boolean): string {
+    var erroResposta = novoFormulario.check();
+    var erroInexistente = this.checkInexistente(novoFormulario);
+	var erroRespondido = confirmado? null : this.checkRespondido(oldNome);
+	
+    if (!erroResposta && !erroInexistente && !erroRespondido) {
+	  this.formularios[this.formularios.findIndex(form => form.nome === oldNome)] = novoFormulario;
+    }
+	
+    return erroResposta || erroInexistente || erroRespondido;
+  }
+  
   public cadastraFormulario(formulario: Formulario): string {
     var erroResposta = formulario.check();
     var erroDuplicado = this.checkDuplicado(formulario);
     if (!erroDuplicado) {
 	  this.formularios.push(formulario);
+	  this.respondido.push(false);
     }
     return erroResposta || erroDuplicado;
   }
@@ -64,5 +88,18 @@ export class Sistemas {
 	  return 'ERRO:\nJá existe um formulário com título "' + formulario.nome + '"\n';
 	}
 	return null;
+  }
+  
+  private checkInexistente(formulario: Formulario): string {
+    if(!this.formularios.find(form => form.nome === formulario.nome)) {
+	  return 'ERRO:\nFormulário "' + formulario.nome + '" inexistente\n';
+	}
+	return null;
+  }
+  
+  private checkRespondido(oldNome: string): string {
+    if(this.respondido[this.formularios.findIndex(form => form.nome === oldNome)]) {
+		return 'respondido';
+	}
   }
 }

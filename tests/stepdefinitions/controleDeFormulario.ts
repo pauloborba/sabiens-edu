@@ -16,7 +16,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     Given(/^estou na página de cadastro de formulários do sistema "([^\"]*)"$/, async (sistema) => {
-		await $("a[routerLink='/controleDeFormulario']").click();
+		await $("a[routerLink='/cadastroDeFormulario']").click();
     });
 
     Given(/^eu dei ao formulário a cadastrar o título "([^\"]*)"$/, async (titulo) => {
@@ -71,7 +71,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     Given(/^existe no sistema "([^\"]*)" um formulário com título "([^\"]*)", com "([^\"]*)" questões$/, async (sistema, titulo, questoes) => {
         await browser.get("http://localhost:4200/");
         await expect(browser.getTitle()).to.eventually.equal('SabiensEdu');
-		await $("a[routerLink='/controleDeFormulario']").click();
+		await $("a[routerLink='/cadastroDeFormulario']").click();
 		
 		var counter = 1;
 		while(counter <= Number(<string> questoes)) {
@@ -90,7 +90,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     When(/^eu tento cadastrar no sistema "([^\"]*)" um novo formulário com título "([^\"]*)", com "([^\"]*)" questão$/, async (sistema, titulo, questoes) => {
         await browser.get("http://localhost:4200/");
         await expect(browser.getTitle()).to.eventually.equal('SabiensEdu');
-		await $("a[routerLink='/controleDeFormulario']").click();
+		await $("a[routerLink='/cadastroDeFormulario']").click();
 		
 		var counter = 1;
 		while(counter <= Number(<string> questoes)) {

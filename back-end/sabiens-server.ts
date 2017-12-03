@@ -41,6 +41,22 @@ for(let sistema of cadastro.sistemas) {
 		
 		res.send(sistema.cadastraFormulario(formulario));
 	})
+	
+	app.post('/' + sistema.nome + '/simularResposta', function (req: express.Request, res: express.Response) {
+		var formularioQueNaoFunciona: Formulario = <Formulario> req.body;
+		var formulario = castToFormulario(formularioQueNaoFunciona);
+		
+		sistema.simularResposta(formulario);
+	})
+	
+	app.put('/' + sistema.nome + '/altera', function (req: express.Request, res: express.Response) {
+		var obj: any = req.body;
+		var nomeOld = obj.nomeOld;
+		var novoFormulario = castToFormulario(obj.formulario);
+		var confirmado = obj.confirmado;
+		
+		res.send(sistema.alteraFormulario(nomeOld, novoFormulario, confirmado));
+	})
 }
 
 app.get('/sistemas', function (req: express.Request, res: express.Response) {

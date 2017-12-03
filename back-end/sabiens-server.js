@@ -35,11 +35,19 @@ for (let sistema of cadastro.sistemas) {
     app.post('/' + sistema.nome + '/formulario', function (req, res) {
         var formularioQueNaoFunciona = req.body;
         var formulario = castToFormulario(formularioQueNaoFunciona);
-        var erroResposta = formulario.check();
-        if (!erroResposta) {
-            sistema.formularios.push(formulario);
-        }
-        res.send(erroResposta);
+        res.send(sistema.cadastraFormulario(formulario));
+    });
+    app.post('/' + sistema.nome + '/simularResposta', function (req, res) {
+        var formularioQueNaoFunciona = req.body;
+        var formulario = castToFormulario(formularioQueNaoFunciona);
+        sistema.simularResposta(formulario);
+    });
+    app.put('/' + sistema.nome + '/altera', function (req, res) {
+        var obj = req.body;
+        var nomeOld = obj.nomeOld;
+        var novoFormulario = castToFormulario(obj.formulario);
+        var confirmado = obj.confirmado;
+        res.send(sistema.alteraFormulario(nomeOld, novoFormulario, confirmado));
     });
 }
 app.get('/sistemas', function (req, res) {

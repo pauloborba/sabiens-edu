@@ -3,6 +3,7 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Formulario } from './formulario';
+import { CadastroDeSistema } from './cadastro de sistema';
 
 @Injectable()
 export class FormularioService {
@@ -11,8 +12,36 @@ export class FormularioService {
 
 	constructor(private http: Http) { }
 	
+	simularResposta(formulario, nomeSistema): any {
+		return this.http.post(this.url + '/' + nomeSistema + '/simularResposta', JSON.stringify(formulario), {headers: this.headers})
+			.toPromise()
+			.then(res => {
+				return res.text();
+			})
+			.catch(this.tratarErro);
+	}
+	
+	getSistemas(): any {
+		return this.http.get(this.url + '/sistemas', {headers: this.headers})
+			.toPromise()
+			.then(res => {
+				return res.json() as CadastroDeSistema;
+			})
+			.catch(this.tratarErro);
+	}
+	
 	cadastraFormulario(formulario, nomeSistema): any {
 		return this.http.post(this.url + '/' + nomeSistema + '/formulario', JSON.stringify(formulario), {headers: this.headers})
+			.toPromise()
+			.then(res => {
+				return res.text();
+			})
+			.catch(this.tratarErro);
+	}
+	
+	alteraFormulario(formularioOld, formulario, nomeSistema, confirmado): any {
+		var obj: Object = { formulario: formulario, nomeOld: formularioOld.nome, confirmado: confirmado};
+		return this.http.put(this.url + '/' + nomeSistema + '/altera', JSON.stringify(obj), {headers: this.headers})
 			.toPromise()
 			.then(res => {
 				return res.text();
