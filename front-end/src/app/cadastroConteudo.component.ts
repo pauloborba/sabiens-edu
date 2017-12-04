@@ -52,9 +52,12 @@ export class CadastroConteudo {
     this.topico.push(new Topico(this.nomeTopico,this.descricaoTopico)); //adicionando a variavel de topico ao array de topico
     this.conteudo.desenvolvimento = this.topico; // desenvolviemnto será igual ao array de topico
     this.conteudo.conclusao = this.conclusao;
-    if ( this.cadastroServico.gravarConteudo(this.conteudo) ) {  // push no array de conteudos do service
+    var result = this.cadastroServico.gravarConteudo(this.conteudo);
+    if ( result == "ok") {  // push no array de conteudos do service
       this.conteudos.push(this.conteudo); // push no array de conteudos local
-    }else{
+    }else if(result == "emptyField"){
+      alert("Você esqueceu de preencher algum campo");
+    } else{
       this.conteudoExistente=true;
       alert("Já existe um conteúdo com esse título"); // caso já exista um conteudo show a alert
     }
