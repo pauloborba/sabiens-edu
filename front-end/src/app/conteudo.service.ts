@@ -4,9 +4,7 @@ export class ConteudoService {
   conteudos: Conteudo[] = [];
   gravarConteudo(conteudo: Conteudo): String {
     var result = null;
-    if (conteudo.conclusao == "" || conteudo.conclusao == undefined || conteudo.nome == "" || conteudo.nome == undefined || conteudo.descricao == "" || conteudo.descricao == undefined
-  || conteudo.introducao == "" || conteudo.introducao == undefined || conteudo.desenvolvimento[0].nome== ""  || conteudo.desenvolvimento[0].nome== undefined || conteudo.desenvolvimento[0].descricao==""  
-|| conteudo.desenvolvimento[0].descricao== undefined){
+    if (this.conteudoEstaInvalido(conteudo)){
       result = "emptyField";
     } else if(this.conteudoExistente(conteudo.nome)==false) {
         console.log("deu certo, ele identificou um conteudo preexistente");
@@ -26,5 +24,20 @@ export class ConteudoService {
   }
   conteudoExistente(titulo:string): boolean {
     return !this.conteudos.find(conteudoX => conteudoX.nome == titulo);
+  }
+  stringVaziaOuIndefinida(content:String): boolean{
+    if( content == "" || content == undefined ) {
+        return true;
+    }else{
+        return false;
+    }
+  }
+  conteudoEstaInvalido(conteudo:Conteudo): boolean{
+    if ( ( this.stringVaziaOuIndefinida(conteudo.nome)) || ( this.stringVaziaOuIndefinida(conteudo.conclusao)) || ( this.stringVaziaOuIndefinida(conteudo.introducao)) 
+          || ( this.stringVaziaOuIndefinida(conteudo.descricao))  || ( this.stringVaziaOuIndefinida(conteudo.desenvolvimento[0].nome))  || ( this.stringVaziaOuIndefinida(conteudo.desenvolvimento[0].descricao)) ){
+            return true;
+    }else{
+      return false;
+    }
   }
 }
