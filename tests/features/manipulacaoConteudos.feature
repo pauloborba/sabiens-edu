@@ -3,7 +3,7 @@ Feature: Manipulação de conteúdos
 	I want to manipular os conteúdos em cada tópico que correspondem aos sistemas do corpo humano.
 	So that eu possa disponibilizar o conteúdo na aplicação.
 
-Scenario: Tentativa de inserção conteúdo à um sistema do corpo humano que já possui conteúdo com mesmo “título”.
+Scenario: Tentativa de inserção conteúdo, quando sistema já possui um conteúdo com mesmo titulo
 
 Given Estou na página de Cadastro de Conteudo
 Given So está contidos na lista de conteúdo o conteudo com seguinte titulo "Resumo rápido do Sistema Respiratorio" , descricao de "orem ipsum dolor sit" , introducao de "orem ipsum dolor sit" , desenvolvimento com titulo de "lorem ipsum dolor sit" e descricao "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temp" e por fim, conclusao com "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temp"
