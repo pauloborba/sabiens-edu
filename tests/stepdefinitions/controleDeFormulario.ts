@@ -172,3 +172,22 @@ defineSupportCode(function ({ Given, When, Then }) {
 		await browser.switchTo().alert().accept();
 	});
 });
+
+defineSupportCode(function ({ Given, When, Then }) {
+    When(/^eu tento remover o formulário "([^\"]*)"$/, async (titulo) => {
+		await browser.get("http://localhost:4200/");
+        await expect(browser.getTitle()).to.eventually.equal('SabiensEdu');
+		await $("a[routerLink='/listaFormularios']").click();
+		await element(by.id('rem' + <string> titulo)).click();
+    });
+	
+	Then(/^eu vejo uma mensagem pedindo confirmação e me informando que alguns alunos já responderam ao formulário$/, async() => {
+		var counter = 0;
+		while(counter < 8000000) {
+			counter++;
+			//essa maneira de esperar parece ser a única que funciona...
+			//colocar dentro de uma função pra não duplicar o código também não funcionou
+		}
+		await browser.switchTo().alert().accept();
+	});
+});
