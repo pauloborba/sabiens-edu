@@ -25,7 +25,7 @@ Given Preencho os campos de titulo "Resumo do Sistema Urinário" , descricao de 
 When Eu tento adiconar o conteudo a lista de conteudos
 Then Um alerta deve ser exibida devido com a mensagem "Você escreveu pouquissimo no campo de conclusão"
 
-Scenario: Removendo um conteúdo, em seguida, não vendo ele mais na lista de conteudo 
+Scenario: Removendo um conteúdo, assim excluindo ele da lista
 
 Given Estou na página de Cadastro de Conteudo ao sistema
 Given So está contidos na lista de conteúdo o conteudo com titulo de "Resumo rápido do Sistema Respiratorio" , descricao de "orem ipsum dolor sit" , introducao de "orem ipsum dolor sit" , desenvolvimento com titulo de "lorem ipsum dolor sit" e descricao "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temp" e por fim, conclusao com "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temp"
