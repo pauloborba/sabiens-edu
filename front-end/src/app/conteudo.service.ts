@@ -20,7 +20,7 @@ export class ConteudoService {
     } else if(this.conteudoExistente(conteudo.nome)==false) {
         console.log("deu certo, ele identificou um conteudo preexistente");
         result = "sameTitle";
-    } else if(quantidadeConc < this.minimocaracteres || quantidadeDes < this.minimocaracteres) {
+    } else if(this.quantidadeMinima(quantidadeConc, quantidadeDes)) {
       console.log("não foi atingido o minimo de caracteres na conclusao");
       result = "minCaracterConc";
     } else{
@@ -49,6 +49,13 @@ export class ConteudoService {
     if ( ( this.stringVaziaOuIndefinida(conteudo.nome)) || ( this.stringVaziaOuIndefinida(conteudo.conclusao)) || ( this.stringVaziaOuIndefinida(conteudo.introducao)) 
           || ( this.stringVaziaOuIndefinida(conteudo.descricao))  || ( this.stringVaziaOuIndefinida(conteudo.desenvolvimento[0].nome))  || ( this.stringVaziaOuIndefinida(conteudo.desenvolvimento[0].descricao)) ){
             return true;
+    }else{
+      return false;
+    }
+  }
+  quantidadeMinima(q1:Number,q2:Number): boolean{
+    if(q1 < this.minimocaracteres || q2 < this.minimocaracteres) {
+      return true;
     }else{
       return false;
     }
