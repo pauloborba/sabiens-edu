@@ -135,3 +135,40 @@ defineSupportCode(function ({ Given, When, Then }) {
 		await expect(sistemas._formularios[0]._questoes.length).to.equal(Number(<string> questoes));
     });
 });
+
+defineSupportCode(function ({ Given, When, Then }) {
+    Given(/^estou na página de formulários do sistema "([^\"]*)"$/, async (sistema) => {
+		await browser.get("http://localhost:4200/");
+        await expect(browser.getTitle()).to.eventually.equal('SabiensEdu');
+		await $("a[routerLink='/listaFormularios']").click();
+    });
+
+    Given(/^eu vejo um formulário "([^\"]*)"$/, async (titulo) => {
+		await $("a[routerLink='/cadastroDeFormulario']").click();
+        await $("input[id='titulo']").sendKeys(<string> titulo);
+		await $("button[id='submit']").click();
+		await browser.get("http://localhost:4200/");
+        await expect(browser.getTitle()).to.eventually.equal('SabiensEdu');
+		await $("a[routerLink='/listaFormularios']").click();
+		await expect(!!(element(by.id(<string> titulo)))).to.be.true;
+    });
+
+    Given(/^o aluno "([^\"]*)" já respondeu ao formulário "([^\"]*)"$/, async (aluno, titulo) => {
+		await element(by.id(<string> titulo)).click();
+		await element(by.id('fingir')).click();
+    });
+
+    When(/^eu tento alterar o formulário "([^\"]*)"$/, async (titulo) => {
+		await $("button[id='submit']").click();
+    });
+	
+	Then(/^eu vejo uma mensagem pedindo confirmação e me avisando que as estatísticas relativas ao formulário serão resetadas$/, async() => {
+		var counter = 0;
+		while(counter < 8000000) {
+			counter++;
+			//essa maneira de esperar parece ser a única que funciona...
+			//colocar dentro de uma função pra não duplicar o código também não funcionou
+		}
+		await browser.switchTo().alert().accept();
+	});
+});
