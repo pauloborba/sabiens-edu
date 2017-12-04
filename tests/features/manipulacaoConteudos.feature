@@ -17,3 +17,10 @@ Given Estou na página de Cadastro de Conteudo no sistema
 Given Preencho um novo conteudo com campo titulo de "Sobre os orgãos" , descricao de "orem ipsum dolor sit" , introducao de "orem ipsum dolor sit" , desenvolvimento com titulo de "lorem ipsum dolor sit" e descricao "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temp", porém não preencho nada no campo de conclusao
 Given Eu tento inserir o novo conteudo, com campo de conclusão vazio
 Then Um alerta aparece com a mensagem "Você esqueceu de preencher algum campo" aparece, pois um campo não foi preenchido
+
+Scenario: Inserindo conteúdo, sem êxito, por não ter atingido o mínimo necessário de caracteres no campo conclusão.
+
+Given Estou na página de Cadastro de Conteudo
+Given Preencho os campos de titulo "Resumo do Sistema Urinário" , descricao de "orem ipsum dolor sit" , introducao de "orem ipsum dolor sit" , desenvolvimento com titulo de "lorem ipsum dolor sit" e descricao "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temp" e por fim, conclusao com "Lorem ipsum "
+When Eu tento adiconar o conteudo a lista de conteudos
+Then Um alerta deve ser exibida devido com a mensagem "Você escreveu pouquissimo no campo de conclusão"
