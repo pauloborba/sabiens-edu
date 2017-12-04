@@ -57,6 +57,10 @@ export class CadastroConteudo {
       this.conteudos.push(this.conteudo); // push no array de conteudos local
     }else if(result == "emptyField"){
       alert("Você esqueceu de preencher algum campo");
+    } else if(result == "minCaracterConc"){
+      alert("Você escreveu pouquissimo no campo de conclusão"); 
+    } else if(result == "minCaracterDes"){
+      alert("Você escreveu pouquissimo no campo de descrição de desenvolvimento"); 
     } else{
       this.conteudoExistente=true;
       alert("Já existe um conteúdo com esse título"); // caso já exista um conteudo show a alert
