@@ -1,0 +1,96 @@
+<div class="container" style="margin-top:40px;">
+        <h2 style="margin-bottom:30px;font-weight:700;">Cadastro do Conteudo</h2>
+    <div class="forms">
+        <div class="row">
+            <h3 class="col s4" style="font-size:30px;color:#616161">Escolha um titulo:</h3> 
+            <h3 class="col s8" style="font-size:30px;color:#616161">Descreva brevemente o conteúdo:</h3>
+        </div>
+        <div class="row">
+            <div class="input-field col s4">
+                <input #tituloInput [(ngModel)]="titulo" name="titulo" id="first_name2" type="text" class="validate">
+                <label class="active"  for="first_name2">Título</label>
+            </div>
+
+            <div class="input-field col s8">
+                    <input #descricaoInput [(ngModel)]="descricao"  name="descricao" id="first_name3" type="text" class="validate">
+                    <label class="active"  for="first_name2">Descrição</label>
+                    </div>
+            
+        </div>
+
+        
+        <div class="box">
+            <h3>introdução</h3>
+        
+            <div class="row">
+                    <form  class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <textarea #introInput [(ngModel)]="introducao"  name="introducao"  id="textarea1" class="materialize-textarea"></textarea>
+                        <label  for="textarea1">Introdução</label>
+                        </div>
+                    </div>
+                    </form>
+            </div>
+        </div>
+        <div class="box">
+            <h3>Desenvolvimento</h3>
+            <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                            <textarea #nomeTopicoInput [(ngModel)]="nomeTopico" name="nomeTopico" id="textarea2" class="materialize-textarea"></textarea>
+                            <label for="textarea1">Titulo do tópico</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                            <textarea #descricaoTopicoInput [(ngModel)]="descricaoTopico" name="descricaoTopico" class="materialize-textarea"></textarea>
+                            <label for="textarea1">Descrição do tópico</label>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+        
+        <div class="box">
+            <h3>Conclusão</h3>
+            <div class="row">
+                    <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <textarea #conclusaoInput [(ngModel)]="conclusao" name="conclusao" id="textarea4" class="materialize-textarea"></textarea>
+                        <label for="textarea1">Escreva sobre conclusão e comentários</label>
+                        </div>
+                    </div>
+                    </form>
+            </div>
+        </div>        
+        <a (click)="gravar()" name="send" style="margin-left:400px; margin-top:50px;margin-bottom:100px"class="waves-effect waves-light btn">ENVIAR</a>
+        
+    </div> 
+    <h3 style="color:#9E9E9E;font-size:25px">Aqui estão os conteudos já existentes nesse sistema:</h3>
+    
+    <table style="margin-bottom:40px">
+        <thead>
+          <tr>
+              <th>Titulo do Conteudo</th>
+              <th>ID</th>
+              <th>Descrição</th>
+          </tr>
+        </thead>
+    
+        <tbody *ngFor="let a of conteudos" name="listaconteudo" >
+          <tr>
+            <td name="titulos"> {{a.nome}} </td>
+            <td>{{a.id}}</td>
+            <td>{{a.descricao}}</td>
+          </tr>
+         </tbody> 
+    </table> 
+    
+</div>
+
+
+
+
