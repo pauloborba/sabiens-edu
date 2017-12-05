@@ -1,0 +1,24 @@
+feature: login no sistema
+As a usuário
+I want to entrar no sistema com meus dados
+So that eu possa manter meus dados entre usos
+
+Scenario: Login de usuário (GUI) ***
+Given estou na página “Log in”
+When preencho o campo “email” com “bernardo@”
+And preencho o campo “senha” com “123456Seven”
+And escolho entrar no sistema
+Then vejo a página “Boas-vindas!”
+
+Scenario: falha no login de usuário por senha incorreta (GUI) ***
+Given estou na página “Log in”
+When preencho o campo “email” com “bernardo@”
+And preencho o campo “senha” com “12345Six”
+And escolho entrar no sistema
+Then vejo uma mensagem de erro informando que a senha inserida está incorreta
+
+Scenario: falha no login de usuário por nome de usuário inexistente (GUI) ***
+Given estou na página “Log in”
+When preencho o campo “email” com “fatima@”
+And preencho o campo “senha” com “1234”
+Then vejo uma mensagem de erro informando que esse usuário não existe

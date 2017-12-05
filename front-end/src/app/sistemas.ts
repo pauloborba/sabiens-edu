@@ -1,7 +1,11 @@
 import { Formulario } from './formulario';
 import { Conteudo } from './conteudo';
 
+<<<<<<< HEAD
 export class Sistema {
+=======
+export class Sistemas {
+>>>>>>> 5381fda... Adição do esqueletos de classes
   private _nome: string;
   private _descricao: string;
   private _formularios: Formulario[];

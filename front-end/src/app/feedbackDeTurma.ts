@@ -4,6 +4,7 @@ import { Formulario } from './formulario';
 export class FeedbackDeTurma {
   private _formulario: Formulario;
   private _turma: Turma;
+<<<<<<< HEAD
   private _ano: number;
 
   constructor(formulario: Formulario, turma: Turma, ano: number) {
@@ -18,6 +19,14 @@ export class FeedbackDeTurma {
 
   set ano(value: number) {
     this._ano = value;
+=======
+  private _respostas: number[][];
+
+  constructor(formulario: Formulario, turma: Turma, respostas: number[][]) {
+    this._formulario = formulario;
+    this._turma = turma;
+    this._respostas = respostas;
+>>>>>>> 5381fda... Adição do esqueletos de classes
   }
 
   public get formulario(): Formulario {
@@ -35,6 +44,17 @@ export class FeedbackDeTurma {
   public set turma(value: Turma) {
     this._turma = value;
   }
+<<<<<<< HEAD
+=======
+
+  public get respostas(): number[][] {
+    return this._respostas;
+  }
+
+  public set respostas(value: number[][]) {
+    this._respostas = value;
+  }
+>>>>>>> 5381fda... Adição do esqueletos de classes
   private calcularNotaTurma(): number {
     // Esqueleto
     return 12;

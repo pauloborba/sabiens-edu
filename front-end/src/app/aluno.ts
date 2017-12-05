@@ -1,5 +1,6 @@
 import { Usuario } from './usuario';
 import { Turma } from './turma';
+<<<<<<< HEAD
 import {Resposta} from './resposta';
 
 export class Aluno extends Usuario {
@@ -21,6 +22,17 @@ export class Aluno extends Usuario {
 
   set respostas(value: Resposta[]) {
     this._respostas = value;
+=======
+
+export class Aluno extends Usuario {
+  private _turma: Turma;
+  /*
+  .
+   */
+  constructor(nome: string, senha: string, email: string, turma: Turma) {
+    super(nome, senha, email);
+    this._turma = turma;
+>>>>>>> 5381fda... Adição do esqueletos de classes
   }
 
   public get turma(): Turma {
