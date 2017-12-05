@@ -57,6 +57,14 @@ for(let sistema of cadastro.sistemas) {
 		
 		res.send(sistema.alteraFormulario(nomeOld, novoFormulario, confirmado));
 	})
+	
+	app.put('/' + sistema.nome + '/remove', function (req: express.Request, res: express.Response) {
+		var obj: any = req.body;
+		var formulario = castToFormulario(obj.formulario);
+		var confirmado = obj.confirmado;
+		
+		res.send(sistema.removeFormulario(formulario, confirmado));
+	})
 }
 
 app.get('/sistemas', function (req: express.Request, res: express.Response) {

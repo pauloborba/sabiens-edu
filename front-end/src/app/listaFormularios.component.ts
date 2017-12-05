@@ -16,14 +16,22 @@ import { FormularioService } from './formulario.service';
 export class ListaFormulariosComponent extends CadastroDeFormularioComponent implements OnInit {
 
 	confirmado: boolean;
+	confirmadoRemocao: boolean[][] = [];
 	formularioOld: Formulario;
-	cadastro: CadastroDeSistema = new CadastroDeSistema([]);
+	cadastro: any = new CadastroDeSistema([]);
 	modoLista: boolean = true;
 	
 	ngOnInit(): void {
 		this.formularioService.getSistemas()
 		.then(s => {
 			this.cadastro = s;
+			for(let sistema in s._sistemas) {
+				this.confirmadoRemocao.push([]);
+				for(let form of s._sistemas[sistema]._formularios) {
+					this.confirmadoRemocao[sistema].push(false);
+				}
+			}
+			console.log(this.confirmadoRemocao);
 		})
 		.catch(erro => alert(erro));
 	}
@@ -40,7 +48,7 @@ export class ListaFormulariosComponent extends CadastroDeFormularioComponent imp
 		this.sistema = sistema;
 		
 		this.modoLista = false;
-		this.confirmado = false;	
+		this.confirmado = false;
 	}
 	
 	fingir(): void {
@@ -59,6 +67,24 @@ export class ListaFormulariosComponent extends CadastroDeFormularioComponent imp
 				}
 			} else {
 				this.success = true;
+			}
+		})
+		.catch(erro => alert(erro));
+	}
+	
+	remove(indexSistema, indexFormulario): void {
+		this.formularioService.removeFormulario(this.cadastro._sistemas[indexSistema], this.cadastro._sistemas[indexSistema]._formularios[indexFormulario], this.confirmadoRemocao[indexSistema][indexFormulario])
+		.then(erro => {
+			if(erro) {
+				if(erro === 'respondido') {
+					alert('Alguns alunos já responderam ao formulário!\nSe deseja proceder, clique para remover o formulario ' + form._nome + ' novamente')
+					this.confirmadoRemocao[indexSistema][indexFormulario] = true;
+				} else {
+					alert(erro);
+				}
+			} else {
+				this.cadastro._sistemas[indexSistema]._formularios.splice(indexFormulario, 1);
+				this.confirmadoRemocao[indexSistema].splice(indexFormulario, 1);
 			}
 		})
 		.catch(erro => alert(erro));

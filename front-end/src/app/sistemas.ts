@@ -48,6 +48,18 @@ export class Sistema {
     this._conteudos = value;
   }
   
+  public removeFormulario(formulario: Formulario, confirmado: boolean): string {
+    var index = this.buscaNomeFormulario(formulario.nome);
+	var erro = this.erroRemocao(index, confirmado);
+	
+	if(!erro) {
+	  this.formularios.splice(index,1);
+	  this.respondido.splice(index,1);
+	}
+	
+	return erro;
+  }
+  
   public alteraFormulario(oldNome: string, novoFormulario: Formulario, confirmado: boolean): string {
     var index = this.buscaNomeFormulario(oldNome);
     var erro = this.erroAlteracao(novoFormulario, index, confirmado);
@@ -74,6 +86,13 @@ export class Sistema {
   
   private buscaNomeFormulario(nome: string): number {
     return this.formularios.findIndex(form => form.nome === nome);
+  }
+  
+  private erroRemocao(index: number, confirmado: boolean): string {
+	var erroInexistente = this.checkInexistente(index);
+	var erroRespondido = confirmado? null : this.checkRespondido(index);
+	
+	return erroInexistente || erroRespondido;
   }
   
   private erroAlteracao(formulario: Formulario, index: number, confirmado: boolean): string {
