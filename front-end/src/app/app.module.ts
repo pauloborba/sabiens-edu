@@ -7,13 +7,21 @@ import { SistemaCorpo } from './sistemasCorpo.component';
 import { CadastroConteudo } from './cadastroConteudo.component';
 import { ConteudoService } from './conteudo.service';
 import { AppComponent } from './app.component';
-
+import { EstatisticasComponent } from "./estatisticas.component";
+import { EstStudentComponent } from './estStudent.component';
+import { EstClassComponent } from './estClass.component';
+import { EstatisticasService } from './estatisticas.service';
+import { EstSchoolComponent } from './estSchool.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CadastroConteudo,
     SistemaCorpo,
+    EstatisticasComponent,
+    EstStudentComponent,
+    EstClassComponent,
+    EstSchoolComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +36,25 @@ import { AppComponent } from './app.component';
         path: 'cadastroConteudo',
         component: CadastroConteudo
       },
+      {
+        path: 'estatisticas',
+        component: EstatisticasComponent
+        },
+        {
+        path: 'estStudent',
+        component: EstStudentComponent
+        },
+        {
+        path: 'estClass',
+        component: EstClassComponent
+        },
+        {
+        path: 'estSchool',
+        component: EstSchoolComponent
+        }
     ])
   ],
-  providers: [ConteudoService],
+  providers: [ConteudoService,EstatisticasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
