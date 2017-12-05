@@ -1,14 +1,14 @@
 export class Questao {
   private _titulo: string;
-  private _enuncidado: string;
+  private _enunciado: string;
   private _alternativas: string[];
-  private _correta: number;
+  public _correta: number;
   /*
   .
    */
   constructor(titulo: string, enunciado: string, alternativas: string[], correta: number){
     this._titulo = titulo;
-    this._enuncidado = enunciado;
+    this._enunciado = enunciado;
     this._alternativas = alternativas;
     this._correta = correta;
   }
@@ -24,12 +24,12 @@ export class Questao {
     this._titulo = value;
   }
 
-  public get enuncidado(): string {
-    return this._enuncidado;
+  public get enunciado(): string {
+    return this._enunciado;
   }
 
-  public set enuncidado(value: string) {
-    this._enuncidado = value;
+  public set enunciado(value: string) {
+    this._enunciado = value;
   }
 
   public get alternativas(): string[] {

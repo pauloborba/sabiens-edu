@@ -1,3 +1,7 @@
+typeScript/
+*.map
+*.js
+
 # Logs
 logs
 *.log

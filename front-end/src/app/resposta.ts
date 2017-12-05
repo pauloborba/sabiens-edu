@@ -1,4 +1,13 @@
 import { Formulario } from './formulario';
+<<<<<<< HEAD
+
+export class Resposta {
+  private _formulario: Formulario;
+  private _respostas: number[];
+
+  constructor(formulario: Formulario, respostas: number[]) {
+    this._formulario = formulario;
+=======
 import { Aluno } from './aluno';
 
 export class Resposta {
@@ -9,6 +18,7 @@ export class Resposta {
   constructor(formulario: Formulario, aluno: Aluno, respostas: number[]) {
     this._formulario = formulario;
     this._aluno = aluno;
+>>>>>>> 5381fda... Adição do esqueletos de classes
     this._respostas = respostas;
   }
 
@@ -20,6 +30,8 @@ export class Resposta {
     this._formulario = value;
   }
 
+<<<<<<< HEAD
+=======
   public get aluno(): Aluno {
     return this._aluno;
   }
@@ -28,6 +40,7 @@ export class Resposta {
     this._aluno = value;
   }
 
+>>>>>>> 5381fda... Adição do esqueletos de classes
   public get respostas(): number[] {
     return this._respostas;
   }
