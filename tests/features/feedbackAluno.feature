@@ -3,7 +3,7 @@ Feature: Aluno possui feedback, calculado pelo sistema, dos questionários e pod
 	I want to ver o feedback dos formulários respondidos por mim e compará-los com minha turma
 	So that eu possa avaliar meu desempenho.
 
-	Scenario: Sistema calcula o feedback do aluno, para cada questionário respondido por ele.
+	Scenario: Aluno responde questionário com sucesso, para ter feedback calculado.
 		Given Eu esteja logado como o aluno "Daniel Filgueira Bezerra"
 		Given Eu esteja na pagina "Questionário do Cérebro"
 		Given Eu tenha preenchido todos os campos pedidos pelo questionário "Questionário do Cérebro"
