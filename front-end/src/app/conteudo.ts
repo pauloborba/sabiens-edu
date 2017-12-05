@@ -8,11 +8,16 @@ export class Conteudo extends Material {
 
   constructor(nome: string, id: string, descricao: string, introducao: string, desenvolvimento: Topico[], conclusao: string) {
     super(nome, id, descricao);
+    this.nome = nome;
+    this.id = id;
+    this.descricao = descricao;
     this._introducao = introducao;
     this._desenvolvimento = desenvolvimento;
     this._conclusao = conclusao;
   }
 
+  
+  
   public get introducao(): string {
     return this._introducao;
   }
@@ -36,4 +41,5 @@ export class Conteudo extends Material {
   public set conclusao(value: string) {
     this._conclusao = value;
   }
+  
 }

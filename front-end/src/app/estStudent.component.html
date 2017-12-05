@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<table>
+    <tr>
+        <td><label>Aluno </label></td>
+        <td><input [(ngModel)]="aluno" name="aluno"></td>
+    </tr>
+    <tr>
+        <td><label>Sistema </label></td>
+        <td><input [(ngModel)]="sistema" name="sistema"></td>
+    </tr>
+    <tr>
+        <td><button (click)="gerarEstatisticas(aluno, sistema)">Ver Estatisticas</button></td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>Respostas</th>
+        <th>Porcentagem</th>
+    </tr>
+    <tr>
+        <td>
+            <table>
+                <tr *ngFor="let r of respostas" name="respostasList">
+                    <td [id]="r">{{r}}</td>
+                </tr>
+            </table>
+        </td>
+        <td *ngIf="flag">
+            <input [(ngModel)]="porcentagem" name="porcent" disabled>
+        </td>
+    </tr>
+</table>
+</html>

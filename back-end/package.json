@@ -1,15 +1,15 @@
 {
-    "name": "sabiens-server",
-    "version": "0.1",
-    "description": "Servidor do sabiens",
-    "main": "ta-server.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "Sabiens Team",
-    "license": "MIT",
-    "dependencies": {
-      "express": "^4.15.4"
-    },
-    "devDependencies": {}
-  }
+  "name": "sabiens-server",
+  "version": "0.0.0",
+  "description": "Servidor do sabiens",
+  "main": "ta-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sabiens Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "devDependencies": {}
+}
