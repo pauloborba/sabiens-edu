@@ -12,7 +12,6 @@ export class Sistema {
     this._descricao = descricao;
     this._formularios = formularios;
     this._conteudos = conteudos;
-	
 	this.respondido = [];
   }
 
