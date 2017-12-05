@@ -48,6 +48,16 @@ export class FormularioService {
 			})
 			.catch(this.tratarErro);
 	}
+	
+	removeFormulario(sistema, formulario, confirmado): any {
+		var obj: Object = { formulario: formulario, confirmado: confirmado};
+		return this.http.put(this.url + '/' + sistema._nome + '/remove', JSON.stringify(obj), {headers: this.headers})
+			.toPromise()
+			.then(res => {
+				return res.text();
+			})
+			.catch(this.tratarErro);
+	}
 
 	private tratarErro(erro: any): Promise<any>{
 		console.error('Acesso mal sucedido ao serviço de alunos',erro);

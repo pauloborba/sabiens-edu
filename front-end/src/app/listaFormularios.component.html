@@ -1,11 +1,12 @@
 <p>
 <form class="col s11 offset-s1" *ngIf="modoLista">
-	<div *ngFor="let sistema of cadastro._sistemas" class = "col s9 row offset-s1">
+	<div *ngFor="let sistema of cadastro._sistemas;index as i" class = "col s9 row offset-s1">
 		<h5 class="row col s9 offset-s1 blue-text text-darken-2">{{sistema._nome}}</h5>
 		<p>
 		
-		<div *ngFor="let formulario of sistema._formularios" class="col s9 row offset-s1">
+		<div *ngFor="let formulario of sistema._formularios;index as j" class="col s9 row offset-s1">
 			<a id="{{formulario._nome}}" (click)="modoFormulario(formulario, sistema._nome)">{{formulario._nome}}</a>
+			<button id="rem{{formulario._nome}}" class="btn-floating red" (click)="remove(i,j)"><i class="material-icons white-text">close</i></button>
 		</div>
 	
 		<div class="row col s9 offset-s1">
