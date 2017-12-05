@@ -73,7 +73,11 @@ export class ListaFormulariosComponent extends CadastroDeFormularioComponent imp
 	}
 	
 	remove(indexSistema, indexFormulario): void {
-		this.formularioService.removeFormulario(this.cadastro._sistemas[indexSistema], this.cadastro._sistemas[indexSistema]._formularios[indexFormulario], this.confirmadoRemocao[indexSistema][indexFormulario])
+		var sys = this.cadastro._sistemas[indexSistema];
+		var form = sys._formularios[indexFormulario];
+		var confirmado = this.confirmadoRemocao[indexSistema][indexFormulario];
+		
+		this.formularioService.removeFormulario(sys, form, confirmado)
 		.then(erro => {
 			if(erro) {
 				if(erro === 'respondido') {
@@ -83,11 +87,15 @@ export class ListaFormulariosComponent extends CadastroDeFormularioComponent imp
 					alert(erro);
 				}
 			} else {
-				this.cadastro._sistemas[indexSistema]._formularios.splice(indexFormulario, 1);
-				this.confirmadoRemocao[indexSistema].splice(indexFormulario, 1);
+				this.retiraFormulario(indexSistema, indexFormulario);
 			}
 		})
 		.catch(erro => alert(erro));
+	}
+	
+	retiraFormulario(indexSistema, indexFormulario): void {
+		this.cadastro._sistemas[indexSistema]._formularios.splice(indexFormulario, 1);
+		this.confirmadoRemocao[indexSistema].splice(indexFormulario, 1);
 	}
 	
 	return(): void {
