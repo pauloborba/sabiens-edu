@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<table>
+    <tr>
+        <td><label>Escola </label></td>
+        <td><input [(ngModel)]="escola" name="escola"></td>
+    </tr>
+    <tr>
+        <td><label>Turma </label></td>
+        <td><input [(ngModel)]="turma" name="turma"></td>
+    </tr>
+    <tr>
+        <td><label>Sistema </label></td>
+        <td><input [(ngModel)]="sistema" name="sistema"></td>
+    </tr>
+    <tr>
+        <td><button (click)="getAlunos(escola, turma, sistema)">Listar Alunos</button></td>
+        <td><button (click)="gerarEstatisticas()">Ver Estatisticas</button></td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>Alunos</th>
+    </tr>
+    <tr *ngFor="let a of alunos" name="studentsList">
+        <td name="namelist">{{a.nome}}</td>
+        <td>
+            <input [(ngModel)]="qtd" disabled>
+        </td>
+    </tr>
+</table>
+</html>
