@@ -14,4 +14,8 @@ export class CadastroDeSistema {
   set sistemas(value: Sistema[]) {
     this._sistemas = value;
   }
+	
+  buscaSistema(nome: string): Sistema {
+    return this.sistemas.find(sistema => sistema.nome === nome);
+  }
 }
