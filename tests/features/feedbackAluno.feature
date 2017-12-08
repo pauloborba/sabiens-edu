@@ -21,3 +21,23 @@ Feature: Aluno possui feedback, calculado pelo sistema, dos questionários e pod
 		When Eu tento ver o feedback do questionário "O Cérebro"
 		Then Eu posso ver o feedback referente ao questinário "O Cérebro", para o aluno "Daniel Filgueira Bezerra"
 		Then O feedback do aluno "Daniel Filgueira Bezerra" conterá "67%".
+	
+	
+	Scenario: Comparar feedback de um questionário com o da turma.
+		Given Estou logado como o aluno "Daniel Filgueira Bezerra"
+		Given Estou na página "feedback do quesitonário sobre o Cérebro"
+		Given A escola Cadastrada "São Luis" esteja cadastrada.
+		Given O aluno "Daniel Filgueira Bezerra" seja um aluno da turma "A" da escola "São Luís"
+		Given A turma "A" tem média "72%" no questionário "O Cérebro"
+		When Eu solicitar a comparação do meu resultado com o da minha turma
+		Then Eu consigo visualizar os feedbacks referentes aquele questionário para minha turma e para mim.
+		Then minha nota aparecerá "67%"
+		Then a nota da minha turma aparecerá "72%"
+		
+	Scenario: Tentar comparar feedback, sem que o aluno possua uma turma.
+		Given Estou logado como o aluno "Daniel Filgueira Bezerra"
+		Given Eu tenha previamente respondido com sucesso o questionário "Questionário do Cérebro"
+		Given Estou na página "feedback do questionário sobre o Cérebro"
+		Given A escola "São Luís" não tenha sido cadastrada.
+		When Eu solicitar a comparação do resultado com o da minha turma.
+		Then Eu vejo uma mensagem de erro, informando que não possuo uma turma cadastrada.
