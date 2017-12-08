@@ -26,8 +26,11 @@ defineSupportCode(function ({ Given, When, Then, setDefaultTimeout }) {
 
     //eu esteja cadastrado na turma A da escola sao luis
     Given(/^Eu tenha respondi c na questao 3$/, async () => {
-        await $("h2[name='minhaEscla']").val()=="Sao Luis";
-        await $("h2[name='minhaTurma']").val()=="A";
+        //a escolha tem de estar cadastrada
+        await $(arrayEscolas.find("Sao Luis"));
+        //e o aluno tem que ser dela e da turma
+        await $(aluno.Escola).val()=="Sao Luis";
+        await $(aluno.Turma).val()=="A";
     });
 
 
