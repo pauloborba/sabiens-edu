@@ -5,6 +5,7 @@ export abstract class Material {
   /*
   .
    */
+  
   constructor(nome: string, id: string, descricao: string){
     this._nome = nome;
     this._id = id;
@@ -13,7 +14,6 @@ export abstract class Material {
   /*
   .
    */
-
   public get nome(): string {
     return this._nome;
   }
